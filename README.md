@@ -12,7 +12,19 @@ The Topics API is part of Chrome's Privacy Sandbox initiative, designed to help 
 
 ## Quick Start with Docker
 
-1. Build and run with Docker:
+### Using Prebuilt Image
+
+The easiest way to get started is to use the prebuilt Docker image which supports both ARM64 (Apple Silicon, AWS Graviton) and AMD64 architectures:
+
+```bash
+docker pull ghcr.io/arnidan/domain-topics-api:latest
+docker run -p 8000:8000 ghcr.io/arnidan/domain-topics-api:latest
+```
+
+### Building from Source
+
+Alternatively, you can build the image yourself:
+
 ```bash
 docker build -t url-classifier .
 docker run -p 8000:8000 url-classifier

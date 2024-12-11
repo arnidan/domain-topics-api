@@ -17,6 +17,11 @@ jobs:
       IMAGE_ID: ${{ steps.prepare.outputs.IMAGE_ID }}
     steps:
       - uses: actions/checkout@v4
+      
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: arm64
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -55,5 +60,6 @@ jobs:
           tags: |
             ${{ steps.prepare.outputs.IMAGE_ID }}:${{ steps.prepare.outputs.VERSION }}
             ${{ steps.prepare.outputs.IMAGE_ID }}:${{ github.run_id }}
+          platforms: linux/arm64,linux/amd64
           cache-from: type=gha
           cache-to: type=gha,mode=max
