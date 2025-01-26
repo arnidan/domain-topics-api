@@ -61,6 +61,28 @@ uvicorn src.app:app --reload
 
 ## API Usage
 
+### Get All Topics
+
+**Endpoint:** `GET /topics`
+
+**Response:**
+```json
+{
+    "topics": [
+        {
+            "id": 123,
+            "name": "Topic Name"
+        },
+        ...
+    ]
+}
+```
+
+**cURL Example:**
+```bash
+curl -X GET "http://localhost:8000/topics"
+```
+
 ### Classify Domain
 
 **Endpoint:** `POST /classify`

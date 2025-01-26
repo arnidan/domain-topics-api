@@ -29,6 +29,12 @@ class TopicsClassifier:
         self.taxonomy = taxonomy_df.set_index(self.config["taxonomy_id_column"])[self.config["taxonomy_name_column"]].to_dict()
         self.taxonomy[self.config["unknown_topic_id"]] = self.config["unknown_topic_name"]
 
+    def get_all_topics(self) -> List[Dict[str, any]]:
+        """Get all available topics from the taxonomy."""
+        return [{"id": topic_id, "name": name} 
+                for topic_id, name in self.taxonomy.items()
+                if topic_id != self.config["unknown_topic_id"]]
+
     def load_model(self):
         model_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),
                                 self.model_version,
