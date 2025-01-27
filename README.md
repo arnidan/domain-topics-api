@@ -21,6 +21,27 @@ docker pull ghcr.io/arnidan/domain-topics-api:latest
 docker run -p 8000:8000 ghcr.io/arnidan/domain-topics-api:latest
 ```
 
+### Using Docker Compose
+
+Create a `docker-compose.yml` file:
+
+```yaml
+version: '3.8'
+
+services:
+  topics-api:
+    image: ghcr.io/arnidan/domain-topics-api:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - WEB_CONCURRENCY=4  # Number of worker processes
+```
+
+Then run:
+```bash
+docker compose up -d
+```
+
 ### Building from Source
 
 Alternatively, you can build the image yourself:
@@ -31,6 +52,10 @@ docker run -p 8000:8000 url-classifier
 ```
 
 The API will be available at `http://localhost:8000`
+
+## Environment Variables
+
+- `WEB_CONCURRENCY`: Number of worker processes for Uvicorn (default: 1)
 
 ## Manual Setup
 
